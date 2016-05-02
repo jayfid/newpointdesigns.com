@@ -1,0 +1,177 @@
+// bower:scss
+// endbower
+@import 'normalize';
+@import 'vars';
+
+body {
+    background: #fff;
+    font-family: $font;
+    color: #000;
+    font-size: $base-font-size;
+    
+    * {
+        font-family: inherit;
+        line-height: 100%;
+    }
+}
+
+.frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $background-color;
+}
+
+.flip {
+    display: flex;
+    perspective: 800;
+    
+    .shadow {
+        background-color:  $cutout-color;
+        
+        .card {
+            width: $card-width;
+            height: $card-height;
+            flex: none;
+            transform-style: preserve-3d;
+            transition: $card-transition;
+        
+            &.flipped {
+                transform: rotatex($card-rotation);
+            }
+            
+            &.flicked {
+                transform: rotatex($card-rotation / 3);
+            }
+            
+            .face {
+                cursor: pointer;
+                position: absolute;
+                backface-visibility: hidden ;
+                z-index: 2;
+                background-color: $card-color;
+                height: $card-height;
+                width: $card-width;
+                display: flex;
+                
+                &.front {
+                    position: absolute;
+                    z-index: 1;
+                    
+                    .banner {
+                        top: 0;
+                    }
+                }
+                
+                &.back {
+                    transform: rotatex($card-rotation);
+
+                     .banner {
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.center-flex-box {
+    display: flex;
+    box-align: center;
+    align-items: center;
+    flex-align: center;
+    align-items: center; 
+    box-pack: center;
+    justify-content: center;
+    flex-pack: center;
+    justify-content: center;
+}
+
+.banner {
+    background-color: $banner-color;
+    color: $banner-text-color;
+    padding-top: $banner-vertical-padding;
+    padding-bottom: $banner-vertical-padding;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    
+    .banner-text {
+        font-size: $banner-font-size;
+        font-weight: 400;
+        margin: 0;
+        text-align: center;
+        
+        a {
+            color: inherit;
+        }
+    }
+}
+
+.branding {
+    text-align: center;
+
+    .logo {
+        display: inline-block;
+        vertical-align: middle;
+        width: $logo-width;
+        height: $logo-height;
+        margin-right: $logo-margin-right;
+    }
+    
+    .main-text {
+        font-size: $logo-font-size;
+        color: $logo-color;
+    }
+    
+    .main-logo {
+        height: 100%;
+        width: 100%;
+        background-size: fit;
+    }
+}
+
+.card-text {
+    padding: $msg-vertical-padding $msg-horizontal-padding;
+    font-weight: 400;
+    font-size: $card-font-size;
+    line-height: $msg-line-height;
+    margin: 0;
+    color: $card-text-color;
+    
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+}
+
+@media screen and (max-width: $breakpoint) {
+    .flip {
+        transform: rotate(90deg);
+        // .shadow {
+        //     .card {
+        //         width: $card-height;
+        //         height: $card-width;
+                
+        //         .face {
+        //             width: $card-height;
+        //             height: $card-width;
+        //             .banner {
+        //                 .banner-text {
+        //                     font-size: 1em;
+        //                     line-height: 1.7em;
+        //                 }
+        //             }
+        //             .branding {
+        //                 .main-text {
+        //                     font-size: 1em;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}
