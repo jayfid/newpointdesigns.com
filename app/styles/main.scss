@@ -3,6 +3,11 @@
 @import 'normalize';
 @import 'vars';
 
+@keyframes tacotiem {
+    from { background-position: 0 0; }
+    to   { background-position: 0 500%; }
+}
+
 body {
     background: #fff;
     font-family: $font;
@@ -10,6 +15,7 @@ body {
     font-size: $base-font-size;
     
     * {
+        user-select: none;
         font-family: inherit;
         line-height: 100%;
     }
@@ -22,6 +28,14 @@ body {
     width: 100%;
     height: 100%;
     background-color: $background-color;
+    background-position: 0 0;
+}
+
+.taco .frame {
+    background-image: url(/images/taco.png);
+    background-position: 0px 5000%;
+    background-repeat: repeat;
+    transition: background-position 10s linear;
 }
 
 .flip {
