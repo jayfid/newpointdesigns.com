@@ -16,9 +16,7 @@
         $('.card').removeClass('flicked');
     }, 500);
 
-    $('.frame').click(function(e) {
-        if ( !$(e.target).parents('.card').length ) {
-            $('.card').removeClass('flipped');
-        }
+    $('.frame').click(function() {
+        $('.card').toggleClass('flipped');
     });
 })(jQuery);
