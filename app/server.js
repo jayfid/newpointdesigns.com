@@ -21,6 +21,13 @@ app.get("/styles/main.css", function (req, res) {
   req.url = "/styles/main.scss";
   app.handle(req, res);
 });
+app.use(function (req, res, next) {
+  if (/styles\/main\.scss$/.test(req.url)) {
+    res.minifyOptions = res.minifyOptions || {};
+    res.minifyOptions.sass = { includePaths: ["./styles"] };
+  }
+  next();
+});
 app.use("/styles", express.static(__dirname + "/styles"));
 app.use("/scripts", express.static(__dirname + "/scripts"));
 app.use("/images", express.static(__dirname + "/images"));

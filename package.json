@@ -18,7 +18,8 @@
     "clean": "rm -rf node_modules dist .sass-cache",
     "start": "node ./app/server.js",
     "pretty": "npx prettier --write .",
-    "lint": "npx eslint app"
+    "lint": "npx eslint app",
+    "build": "rm -rf dist && mkdir -p dist/images dist/scripts dist/styles"
   },
   "eslintConfig": {
     "env": {
