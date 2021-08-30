@@ -16,14 +16,18 @@ app.get("/", function (req, res) {
   });
 });
 
-app.use(minify({}));
-app.use("/styles", express.static(__dirname + "/app/styles"));
-app.use("/scripts", express.static(__dirname + "/app/scripts"));
-app.use("/images", express.static(__dirname + "/app/images"));
-app.use("/favicon.ico", express.static(__dirname + "/app/favicon.ico"));
+app.use(minify({ sass_match: /css/ }));
+app.get("/styles/main.css", function (req, res) {
+  req.url = "/styles/main.scss";
+  app.handle(req, res);
+});
+app.use("/styles", express.static(__dirname + "/styles"));
+app.use("/scripts", express.static(__dirname + "/scripts"));
+app.use("/images", express.static(__dirname + "/images"));
+app.use("/favicon.ico", express.static(__dirname + "/favicon.ico"));
 app.use(
   "/apple-touch-icon.png",
-  express.static(__dirname + "/app/apple-touch-icon.png")
+  express.static(__dirname + "/apple-touch-icon.png")
 );
 
 app.listen(3000);

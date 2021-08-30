@@ -16,9 +16,9 @@
   },
   "scripts": {
     "clean": "rm -rf node_modules dist .sass-cache",
-    "start": "node ./server.js",
+    "start": "node ./app/server.js",
     "pretty": "npx prettier --write .",
-    "lint": "npx eslint app server.js"
+    "lint": "npx eslint app"
   },
   "eslintConfig": {
     "env": {
