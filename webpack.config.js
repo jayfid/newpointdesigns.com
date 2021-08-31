@@ -4,8 +4,9 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
-
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const isProduction = process.env.NODE_ENV == "production";
+const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
   entry: "./src/index.js",
@@ -18,7 +19,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "src/index.html",
     }),
     new HtmlWebpackPartialsPlugin({
       path: "./src/partials/google_analytics.html",
@@ -28,6 +29,11 @@ const config = {
       path: "./src/partials/content.html",
       location: "body",
     }),
+    new MiniCssExtractPlugin(),
+    new FaviconsWebpackPlugin("assets/logo.png"),
+    new CopyPlugin({
+      patterns: [{ from: "assets/robots.txt", to: "robots.txt" }],
+    }),
   ],
   module: {
     rules: [
@@ -36,12 +42,16 @@ const config = {
         loader: "babel-loader",
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader", "sass-loader"],
+        test: /\.(sc|c)ss$/i,
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|ico}txt)$/i,
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|ico|txt)$/i,
         type: "asset",
+      },
+      {
+        test: /images\/taco\.png$/i,
+        type: "asset/resource",
       },
 
       // Add your rules for custom modules here
@@ -53,8 +63,6 @@ const config = {
 module.exports = () => {
   if (isProduction) {
     config.mode = "production";
-
-    config.plugins.push(new MiniCssExtractPlugin());
   } else {
     config.mode = "development";
   }

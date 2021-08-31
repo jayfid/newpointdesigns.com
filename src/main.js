@@ -1,5 +1,5 @@
 /* credit - modified from http://jsfiddle.net/rsadwick/zwWHY/ */
-(function ($, window) {
+const foobar = (function ($, window) {
   "use strict";
   var entered = false,
     tapped = false,
@@ -55,3 +55,5 @@
     }
   });
 })(jQuery, window);
+
+export default foobar;
