@@ -1,5 +1,32 @@
-@import "normalize";
-@import "vars";
+@import "app/normalize";
+$background-color: #6ed3cf;
+$banner-color: #e1e8f0;
+$card-color: #fff;
+$banner-text-color: #464646;
+$logo-color: #3f2412;
+$card-text-color: #000;
+$cutout-color: #9068be;
+
+$base-font-size: 18px;
+$font: "proxima-nova", sans-serif;
+$card-font-size: 0.875em;
+$logo-font-size: 1.6875em;
+$banner-font-size: 0.8125em;
+$msg-line-height: 1.8em;
+
+$card-width: 20.875em;
+$card-height: 11.25em;
+$logo-width: 0.8125em;
+$logo-height: 2.125em;
+$logo-margin-right: 0.5em;
+$banner-vertical-padding: 1.25em;
+$msg-vertical-padding: 1.5625em;
+$msg-horizontal-padding: 2.25em;
+
+$breakpoint: $card-width + 3.2;
+
+$card-rotation: 180deg;
+$card-transition: 0.5s;
 
 @keyframes tacotiem {
   from {

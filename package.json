@@ -2,7 +2,7 @@
   "name": "newpointdesigns.com",
   "private": true,
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=0.14.0"
   },
   "devDependencies": {
     "ejs": "^3.1.6",
@@ -12,14 +12,15 @@
     "express-minify-html": "^0.12.0",
     "html-minifier": "^3.5.7",
     "node-sass": "^4.14.1",
-    "node-sass-middleware": "^0.11.0"
+    "node-sass-middleware": "^0.11.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
   },
   "scripts": {
     "clean": "rm -rf node_modules dist .sass-cache",
     "start": "node ./app/server.js",
     "pretty": "npx prettier --write .",
-    "lint": "npx eslint app",
-    "build": "rm -rf dist && mkdir -p dist/images dist/scripts dist/styles"
+    "lint": "npx eslint app"
   },
   "eslintConfig": {
     "env": {
