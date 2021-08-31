@@ -1,26 +1,31 @@
 {
   "name": "newpointdesigns.com",
+  "version": "1.0.0",
+  "description": "newpointdesigns.com source",
   "private": true,
   "engines": {
     "node": ">=0.14.0"
-  },
-  "devDependencies": {
-    "ejs": "^3.1.6",
-    "eslint": "^7.32.0",
-    "express": "^4.17.1",
-    "express-minify": "^1.0.0",
-    "express-minify-html": "^0.12.0",
-    "html-minifier": "^3.5.7",
-    "node-sass": "^4.14.1",
-    "node-sass-middleware": "^0.11.0",
-    "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0"
   },
   "scripts": {
     "clean": "rm -rf node_modules dist .sass-cache",
     "start": "node ./src/server.js",
     "pretty": "npx prettier --write .",
-    "lint": "npx eslint src"
+    "lint": "npx eslint src",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "devDependencies": {
+    "@webpack-cli/generators": "^2.3.0",
+    "eslint": "^7.32.0",
+    "html-minifier": "^3.5.7",
+    "html-webpack-partials-plugin": "^0.8.0",
+    "mini-css-extract-plugin": "^2.2.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
   },
   "eslintConfig": {
     "env": {
