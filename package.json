@@ -14,7 +14,9 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "deploy": "aws s3 cp ./dist/ 's3://www.newpointdesigns.com'  --recursive --acl public-read --cache-control public,max-age=604800",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E1V20TH9YDWKSV --paths '/*'"
   },
   "dependencies": {
     "jquery": "^3.6.0"
