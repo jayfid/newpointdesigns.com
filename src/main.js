@@ -1,11 +1,9 @@
-/* credit - modified from http://jsfiddle.net/rsadwick/zwWHY/ */
-const foobar = (function ($, window) {
+import $ from "jquery";
+
+const foobar = (window) => {
   "use strict";
-  var entered = false,
-    tapped = false,
-    keyindex = 0,
-    phrase = [116, 97, 99, 111],
-    tacoed = false;
+  let entered = false;
+  let tapped = false;
   $(".flip").mouseover(function () {
     if (!entered) {
       entered = true;
@@ -13,33 +11,37 @@ const foobar = (function ($, window) {
       $(this).find(".card").addClass("flipped");
     }
   });
-
   $(".flip").mouseleave(function () {
     if (entered) {
       entered = false;
       $(this).find(".card").removeClass("flipped");
     }
   });
-
-  window.setTimeout(function () {
+  window.setTimeout(() => {
     $(".card").addClass("flicked");
   }, 200);
-
-  window.setTimeout(function () {
+  window.setTimeout(() => {
     $(".card").removeClass("flicked");
-  }, 500);
-
+  }, 425);
   $(".frame").click(function () {
     if (!tapped) {
       $(".card").toggleClass("flipped");
     }
   });
-
   window.setInterval(function () {
     tapped = false;
   }, 500);
 
+  taco();
+};
+
+export default foobar;
+
+const taco = () => {
+  let keyindex = 0;
   $(window).keypress(function (e) {
+    let phrase = [116, 97, 99, 111];
+    let tacoed = false;
     if (tacoed) {
       return;
     }
@@ -54,6 +56,4 @@ const foobar = (function ($, window) {
       keyindex = 0;
     }
   });
-})(jQuery, window);
-
-export default foobar;
+};

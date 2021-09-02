@@ -8,7 +8,6 @@
   },
   "scripts": {
     "clean": "rm -rf node_modules dist .sass-cache",
-    "start": "node ./src/server.js",
     "pretty": "npx prettier --write .",
     "lint": "npx eslint src",
     "build": "webpack --mode=production --node-env=production",
@@ -17,11 +16,15 @@
     "watch": "webpack --watch",
     "serve": "webpack serve"
   },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@webpack-cli/generators": "^2.3.0",
     "autoprefixer": "^10.3.3",
+    "aws-sdk": "^2.981.0",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
@@ -39,14 +42,18 @@
     "style-loader": "^3.2.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.0.0",
+    "webpack-s3-plugin": "^1.2.0-rc.0"
   },
   "eslintConfig": {
     "env": {
-      "es6": true,
-      "node": true,
+      "es2021": true,
       "browser": true,
       "jquery": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
     },
     "extends": [
       "eslint:recommended"
@@ -59,4 +66,5 @@
   },
   "author": "jayfid",
   "homepage": "https://www.newpointdesigns.com"
+
 }

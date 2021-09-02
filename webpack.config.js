@@ -7,6 +7,8 @@ const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const isProduction = process.env.NODE_ENV == "production";
 const CopyPlugin = require("copy-webpack-plugin");
+const S3Plugin = require("webpack-s3-plugin");
+var AWS = require("aws-sdk");
 
 const config = {
   entry: "./src/index.js",
@@ -30,7 +32,10 @@ const config = {
       location: "body",
     }),
     new MiniCssExtractPlugin(),
-    new FaviconsWebpackPlugin("assets/logo.png"),
+    new FaviconsWebpackPlugin({
+      logo: "assets/logo.png",
+      outputPath: __dirname + "/dist/",
+    }),
     new CopyPlugin({
       patterns: [{ from: "assets/robots.txt", to: "robots.txt" }],
     }),
@@ -63,6 +68,24 @@ const config = {
 module.exports = () => {
   if (isProduction) {
     config.mode = "production";
+    config.plugins.push(
+      new S3Plugin({
+        include: /dist\/.*/,
+        s3Options: {
+          credentials: new AWS.SharedIniFileCredentials({ profile: "default" }),
+        },
+        s3UploadOptions: {
+          Bucket: "www.newpointdesigns.com",
+        },
+        cloudfrontInvalidateOptions: {
+          DistributionId: "E1V20TH9YDWKSV",
+          Items: ["/*"],
+        },
+        cdnizerOptions: {
+          defaultCDNBase: "https://www.newpointdesigns.com",
+        },
+      })
+    );
   } else {
     config.mode = "development";
   }
