@@ -38,6 +38,7 @@ const config = {
       logo: "assets/logo.svg",
       outputPath: __dirname + "/dist/",
       prefix: "",
+      mode: isProduction ? "webapp" : "light",
     }),
     new CopyPlugin({
       patterns: [

@@ -206,6 +206,15 @@ body {
   .location {
     font-size: smaller;
   }
+
+  .links {
+    margin-top: 1.5rem;
+  }
+
+  .spacer {
+    color: #ccc;
+    padding: 0 0.5rem;
+  }
 }
 
 @media screen and (max-width: $breakpoint) {
