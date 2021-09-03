@@ -20,6 +20,7 @@ const config = {
     host: "localhost",
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: "src/index.html",
@@ -36,14 +37,16 @@ const config = {
     new FaviconsWebpackPlugin({
       logo: "assets/logo.svg",
       outputPath: __dirname + "/dist/",
+      prefix: "",
     }),
     new CopyPlugin({
-      patterns: [{
-        from: "assets/robots.txt",
-        to: "robots.txt"
-      }],
+      patterns: [
+        {
+          from: "assets/robots.txt",
+          to: "robots.txt",
+        },
+      ],
     }),
-    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
