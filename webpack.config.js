@@ -20,18 +20,14 @@ const config = {
     host: "localhost",
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
     new HtmlWebpackPartialsPlugin({
       path: "./src/partials/google_analytics.html",
       location: "head",
-    }),
-    new HtmlWebpackPartialsPlugin({
-      path: "./src/partials/content.html",
-      location: "body",
     }),
     new MiniCssExtractPlugin(),
     new FaviconsWebpackPlugin({

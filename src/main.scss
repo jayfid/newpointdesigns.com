@@ -17,7 +17,7 @@ $msg-line-height: 1.8em;
 
 $card-width: 20.875em;
 $card-height: 11.25em;
-$logo-width: 0.8125em;
+$logo-width: 0.9em;
 $logo-height: 2.125em;
 $logo-margin-right: 0.5em;
 $banner-vertical-padding: 1.25em;
@@ -39,7 +39,7 @@ $card-transition: 0.5s;
 }
 
 body {
-  background: #fff;
+  background-color: $background-color;
   font-family: $font;
   color: #000;
   font-size: $base-font-size;

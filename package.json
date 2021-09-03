@@ -19,9 +19,6 @@
     "invalidate": "aws cloudfront create-invalidation --distribution-id E1V20TH9YDWKSV --paths '/*' > /dev/null",
     "ship": "npm run-script build && npm run-script deploy && npm run-script invalidate"
   },
-  "dependencies": {
-    "jquery": "^3.6.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
@@ -50,8 +47,7 @@
   "eslintConfig": {
     "env": {
       "es2021": true,
-      "browser": true,
-      "jquery": true
+      "browser": true
     },
     "parserOptions": {
       "ecmaVersion": "latest",
