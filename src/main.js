@@ -5,44 +5,46 @@ const foobar = () => {
   flickCard();
   taco();
 };
+const timeoutDuration = 300;
 
 const addListeners = () => {
-  let entered = false;
-  let tapped = false;
+  let bufferTimeout = false;
+
+  const resetBufferTimeout = () => {
+    bufferTimeout = false;
+  };
   const flipElement = document.getElementsByClassName("flip")[0];
+  const cardElement = document.getElementsByClassName("card")[0];
   flipElement.addEventListener(
     "mouseenter",
-    () => {
-      if (!entered) {
-        entered = true;
-        tapped = true;
-        document.getElementsByClassName("card")[0].classList.add("flipped");
-      }
+    (e) => {
+      if (bufferTimeout || e.target !== flipElement) return;
+      bufferTimeout = true;
+      cardElement.classList.add("flipped");
+      window.setTimeout(resetBufferTimeout, timeoutDuration);
     },
-    true
+    false
   );
   flipElement.addEventListener(
-    "mouseout",
-    () => {
-      if (entered) {
-        entered = false;
-        document.getElementsByClassName("card")[0].classList.remove("flipped");
-      }
+    "mouseleave",
+    (e) => {
+      if (bufferTimeout && e.target !== flipElement) return;
+      bufferTimeout = true;
+      cardElement.classList.remove("flipped");
+      window.setTimeout(resetBufferTimeout, timeoutDuration);
     },
-    true
+    false
   );
   document.body.addEventListener(
     "mouseup",
     () => {
-      if (!tapped) {
-        document.getElementsByClassName("card")[0].classList.toggle("flipped");
-      }
+      if (bufferTimeout) return;
+      bufferTimeout = true;
+      cardElement.classList.toggle("flipped");
+      window.setTimeout(resetBufferTimeout, timeoutDuration);
     },
     true
   );
-  window.setInterval(() => {
-    tapped = false;
-  }, 500);
 };
 
 const flickCard = () => {
