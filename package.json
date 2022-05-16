@@ -4,7 +4,7 @@
   "description": "newpointdesigns.com source",
   "private": true,
   "engines": {
-    "node": ">=0.14.0"
+    "node": ">=16.15"
   },
   "scripts": {
     "clean": "rm -rf node_modules dist .sass-cache",
@@ -21,29 +21,29 @@
     "ship": "npm run-script build && npm run-script deploy && npm run-script invalidate"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@webpack-cli/generators": "^2.3.0",
-    "autoprefixer": "^10.3.3",
-    "babel-loader": "^8.2.2",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@webpack-cli/generators": "^2.4.2",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^9.0.1",
-    "css-loader": "^6.2.0",
-    "eslint": "^7.32.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.15.0",
     "favicons": "^6.2.2",
     "favicons-webpack-plugin": "^5.0.2",
     "html-webpack-partials-plugin": "^0.8.0",
-    "html-webpack-plugin": "^5.3.2",
-    "mini-css-extract-plugin": "^2.2.0",
-    "postcss": "^8.3.6",
-    "postcss-loader": "^6.1.1",
-    "prettier": "^2.3.2",
-    "sass": "^1.38.2",
-    "sass-loader": "^12.1.0",
-    "style-loader": "^3.2.1",
-    "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.0.0"
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss": "^8.4.13",
+    "postcss-loader": "^6.2.1",
+    "prettier": "^2.6.2",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
   },
   "eslintConfig": {
     "env": {

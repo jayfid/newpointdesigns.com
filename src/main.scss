@@ -1,12 +1,12 @@
-@use 'sass:math';
+@use "sass:math";
 @import "src/normalize";
-$background-color: #6ed3cf;
-$banner-color: #e1e8f0;
-$card-color: #fff;
-$banner-text-color: #464646;
-$logo-color: #3f2412;
+$background-color: #faba1f;
+$banner-color: #0e7688;
+$card-color: #02141e;
+$banner-text-color: #ced1d4;
 $card-text-color: #000;
-$cutout-color: #9068be;
+$cutout-color: #872e00;
+$logo-accent-color: #e86476;
 
 $base-font-size: 18px;
 $font: "Lato", sans-serif;
@@ -20,7 +20,7 @@ $card-height: 11.25em;
 $logo-width: 0.9em;
 $logo-height: 2.125em;
 $logo-margin-right: 0.5em;
-$banner-vertical-padding: 1.25em;
+$banner-vertical-padding: 0.25em;
 $msg-vertical-padding: 1.5625em;
 $msg-horizontal-padding: 2.25em;
 
@@ -71,6 +71,7 @@ body {
 .flip {
   display: flex;
   perspective: 800;
+  box-shadow: 0 0 5px #222;
 
   .shadow {
     background-color: $cutout-color;
@@ -103,18 +104,10 @@ body {
           cursor: pointer;
           position: absolute;
           z-index: 1;
-
-          .banner {
-            top: 0;
-          }
         }
 
         &.back {
           transform: rotatex($card-rotation);
-
-          .banner {
-            bottom: 0;
-          }
         }
       }
     }
@@ -136,18 +129,19 @@ body {
 .banner {
   background-color: $banner-color;
   color: $banner-text-color;
-  padding-top: $banner-vertical-padding;
-  padding-bottom: $banner-vertical-padding;
+  padding: 0;
   position: absolute;
-  width: 100%;
+  width: auto;
+  top: 15px;
   left: 0;
-  right: 0;
 
   .banner-text {
     font-size: $banner-font-size;
     font-weight: 400;
+    font-style: italic;
     margin: 0;
     text-align: center;
+    padding: 0.4rem 1rem;
 
     a {
       color: inherit;
@@ -156,21 +150,9 @@ body {
 }
 
 .branding {
-  margin-top: 2.5em;
+  margin-top: 0.5em;
   text-align: center;
-
-  .logo {
-    display: inline-block;
-    vertical-align: middle;
-    width: $logo-width;
-    height: $logo-height;
-    margin-right: $logo-margin-right;
-  }
-
-  .main-text {
-    font-size: $logo-font-size;
-    color: $logo-color;
-  }
+  max-width: 65%;
 
   .main-logo {
     height: 100%;
@@ -178,16 +160,18 @@ body {
     background-size: fit;
   }
 }
+
 .msg {
   width: 100%;
 }
+
 .card-text {
   text-align: center;
   padding: $msg-vertical-padding $msg-horizontal-padding;
   font-weight: 400;
   font-size: $card-font-size;
   line-height: $msg-line-height;
-  margin: 0;
+  margin: 3rem 0 0;
   color: $card-text-color;
 
   p {
@@ -201,18 +185,22 @@ body {
 
   .name {
     margin-bottom: 5px;
+    color: $banner-text-color;
+    font-size: 1.6rem;
   }
 
   .location {
     font-size: smaller;
+    color: $logo-accent-color;
+    font-size: 1rem;
   }
 
   .links {
-    margin-top: 1.5rem;
+    margin-top: 1.7rem;
   }
 
   .spacer {
-    color: #ccc;
+    color: $banner-color;
     padding: 0 0.5rem;
   }
 }
