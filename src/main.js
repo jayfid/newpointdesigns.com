@@ -26,15 +26,19 @@ const handleEvent = (e) => {
   window.setTimeout(() => currentState.unlock(), 200);
 };
 
+const flippedClass = "flipped";
+const flickedClass = "flick";
+const cardClass = "card";
+
 const addListeners = () => {
   const flipElement = document.getElementsByClassName("flip")[0];
-  const cardElement = document.getElementsByClassName("card")[0];
+  const cardElement = document.getElementsByClassName(cardClass)[0];
   flipElement.addEventListener(
     "mouseenter",
     (e) => {
       if (e.target !== flipElement || currentState.isLocked) return;
       handleEvent(e);
-      cardElement.classList.add("flipped");
+      cardElement.classList.add(flippedClass);
     },
     true
   );
@@ -43,7 +47,7 @@ const addListeners = () => {
     (e) => {
       if (e.target !== flipElement || currentState.isLocked) return;
       handleEvent(e);
-      cardElement.classList.remove("flipped");
+      cardElement.classList.remove(flippedClass);
     },
     true
   );
@@ -56,7 +60,7 @@ const addListeners = () => {
       )
         return;
       handleEvent(e);
-      cardElement.classList.toggle("flipped");
+      cardElement.classList.toggle(flippedClass);
     },
     true
   );
@@ -64,10 +68,12 @@ const addListeners = () => {
 
 const flickCard = () => {
   window.setTimeout(() => {
-    document.getElementsByClassName("card")[0].classList.add("flicked");
+    document.getElementsByClassName(cardClass)[0].classList.add(flickedClass);
   }, 200);
   window.setTimeout(() => {
-    document.getElementsByClassName("card")[0].classList.remove("flicked");
+    document
+      .getElementsByClassName(cardClass)[0]
+      .classList.remove(flickedClass);
   }, 425);
 };
 
