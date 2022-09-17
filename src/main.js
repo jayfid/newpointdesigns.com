@@ -27,6 +27,7 @@ const handleEvent = (e) => {
 };
 
 const flippedClass = "flipped";
+const floppedClass = "flopped";
 const flickedClass = "flicked";
 const cardClass = "card";
 
@@ -56,6 +57,7 @@ const addListeners = () => {
         if (e.target !== flipElement || currentState.isLocked) return;
         handleEvent(e);
         cardElement.classList.add(flippedClass);
+        cardElement.classList.remove(floppedClass);
       },
       true
     );
@@ -65,6 +67,7 @@ const addListeners = () => {
         if (e.target !== flipElement || currentState.isLocked) return;
         handleEvent(e);
         cardElement.classList.remove(flippedClass);
+        cardElement.classList.add(floppedClass);
       },
       true
     );
@@ -79,6 +82,7 @@ const addListeners = () => {
         return;
       handleEvent(e);
       cardElement.classList.toggle(flippedClass);
+      cardElement.classList.toggle(floppedClass);
     },
     true
   );

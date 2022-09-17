@@ -31,6 +31,14 @@ $breakpoint: $card-width + 3.2;
 $card-rotation: 180deg;
 $card-transition: 0.5s;
 
+.flopped .back,
+.flipped .front {
+  display: none;
+  & * {
+    display: none;
+  }
+}
+
 @keyframes tacotiem {
   from {
     background-position: 0 0;
