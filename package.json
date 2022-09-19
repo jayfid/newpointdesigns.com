@@ -16,7 +16,7 @@
     "watch": "webpack --watch",
     "serve": "webpack serve",
     "start": "webpack serve",
-    "deploy": "aws s3 cp ./dist/ 's3://www.newpointdesigns.com'  --recursive --acl public-read --cache-control public,max-age=604800",
+    "deploy": "aws s3 sync ./dist/ 's3://www.newpointdesigns.com' --delete --acl public-read --cache-control public,max-age=315360000",
     "invalidate": "aws cloudfront create-invalidation --distribution-id E1V20TH9YDWKSV --paths '/*' > /dev/null",
     "ship": "npm run-script build && npm run-script deploy && npm run-script invalidate"
   },
