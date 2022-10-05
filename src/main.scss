@@ -53,12 +53,10 @@ body {
 }
 
 .flopped .back,
-.flipped .front {
+.flipped .front,
+.flopped .back *,
+.flipped .front * {
   display: none;
-
-  & * {
-    display: none;
-  }
 }
 
 .frame {
@@ -82,45 +80,45 @@ body {
   display: flex;
   perspective: 800;
   box-shadow: 0 0 5px #222;
+}
 
-  .shadow {
-    background-color: $cutout-color;
+.shadow {
+  background-color: $cutout-color;
+}
 
-    .card {
-      width: $card-width;
-      height: $card-height;
-      flex: none;
-      transform-style: preserve-3d;
-      transition: transform $card-transition;
+.card {
+  width: $card-width;
+  height: $card-height;
+  flex: none;
+  transform-style: preserve-3d;
+  transition: transform $card-transition;
+  cursor: pointer;
+
+  &.flipped {
+    transform: rotateX($card-rotation);
+  }
+
+  &.flicked {
+    transform: rotateX(math.div($card-rotation, 3));
+  }
+
+  .face {
+    position: absolute;
+    backface-visibility: hidden;
+    z-index: 2;
+    background-color: $card-color;
+    height: $card-height;
+    width: $card-width;
+    display: flex;
+
+    &.front {
       cursor: pointer;
+      position: absolute;
+      z-index: 1;
+    }
 
-      &.flipped {
-        transform: rotateX($card-rotation);
-      }
-
-      &.flicked {
-        transform: rotateX(math.div($card-rotation, 3));
-      }
-
-      .face {
-        position: absolute;
-        backface-visibility: hidden;
-        z-index: 2;
-        background-color: $card-color;
-        height: $card-height;
-        width: $card-width;
-        display: flex;
-
-        &.front {
-          cursor: pointer;
-          position: absolute;
-          z-index: 1;
-        }
-
-        &.back {
-          transform: rotateX($card-rotation);
-        }
-      }
+    &.back {
+      transform: rotateX($card-rotation);
     }
   }
 }
@@ -135,16 +133,29 @@ body {
   margin-top: 0.5em;
   text-align: center;
   max-width: 65%;
+}
 
-  .main-logo {
-    height: 100%;
-    width: 100%;
-    background-size: fit;
-  }
+.main-logo {
+  height: 100%;
+  width: 100%;
+  background-size: fit;
 }
 
 .msg {
   width: 100%;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+a {
+  color: $logo-accent-color;
+
+  &:hover {
+    color: color.adjust($logo-accent-color, $lightness: -30%);
+  }
 }
 
 .card-text {
@@ -155,39 +166,26 @@ body {
   line-height: $msg-line-height;
   margin: 3rem 0 0;
   color: $card-text-color;
+}
 
-  p {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
+.name {
+  margin-bottom: 5px;
+  color: $banner-text-color;
+  font-size: 1.6rem;
+}
 
-  a {
-    color: $logo-accent-color;
+.location {
+  color: $banner-text-color;
+  font-size: 1rem;
+}
 
-    &:hover {
-      color: color.adjust($logo-accent-color, $lightness: -30%);
-    }
-  }
+.links {
+  margin-top: 1.7rem;
+}
 
-  .name {
-    margin-bottom: 5px;
-    color: $banner-text-color;
-    font-size: 1.6rem;
-  }
-
-  .location {
-    color: $banner-text-color;
-    font-size: 1rem;
-  }
-
-  .links {
-    margin-top: 1.7rem;
-  }
-
-  .spacer {
-    color: $banner-color;
-    padding: 0 0.5rem;
-  }
+.spacer {
+  color: $banner-color;
+  padding: 0 0.5rem;
 }
 
 .banner {
@@ -198,19 +196,15 @@ body {
   width: auto;
   top: 15px;
   left: 0;
+}
 
-  .banner-text {
-    font-size: $banner-font-size;
-    font-weight: 400;
-    font-style: italic;
-    margin: 0;
-    text-align: center;
-    padding: 0.4rem 1rem;
-
-    a {
-      color: inherit;
-    }
-  }
+.banner-text {
+  font-size: $banner-font-size;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+  padding: 0.4rem 1rem;
 }
 
 @media screen and (max-width: $breakpoint) {
