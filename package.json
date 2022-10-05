@@ -32,7 +32,6 @@
     "eslint": "^8.15.0",
     "favicons": "^6.2.2",
     "favicons-webpack-plugin": "^5.0.2",
-    "html-webpack-partials-plugin": "^0.8.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss": "^8.4.13",

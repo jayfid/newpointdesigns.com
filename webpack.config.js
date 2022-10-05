@@ -4,7 +4,6 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const isProduction = process.env.NODE_ENV == "production";
 const CopyPlugin = require("copy-webpack-plugin");
@@ -25,10 +24,6 @@ const config = {
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
-    new HtmlWebpackPartialsPlugin({
-      path: "./src/partials/google_analytics.html",
-      location: "head",
-    }),
     new MiniCssExtractPlugin(),
     new FaviconsWebpackPlugin({
       logo: "assets/logo.svg",
@@ -41,6 +36,22 @@ const config = {
         {
           from: "assets/robots.txt",
           to: "robots.txt",
+        },
+        {
+          from: "src/fonts/Lato-Regular.woff",
+          to: "fonts/",
+        },
+        {
+          from: "src/fonts/Lato-Regular.woff2",
+          to: "fonts/",
+        },
+        {
+          from: "src/fonts/Lato-Italic.woff",
+          to: "fonts/",
+        },
+        {
+          from: "src/fonts/Lato-Italic.woff2",
+          to: "fonts/",
         },
       ],
     }),
@@ -56,11 +67,15 @@ const config = {
         use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|ico|txt)$/i,
+        test: /\.(svg|png|jpg|gif|ico|txt)$/i,
         type: "asset",
       },
       {
         test: /images\/taco\.png$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/i,
         type: "asset/resource",
       },
     ],
