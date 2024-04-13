@@ -1,15 +1,19 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
+import path from "path";
+import process from "process";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import FaviconsWebpackPlugin from "favicons-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
 
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const __dirname = import.meta.dirname;
 const isProduction = process.env.NODE_ENV == "production";
-const CopyPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const config = {
+  mode: isProduction ? "production" : "development",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -24,6 +28,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
+    new HtmlInlineScriptPlugin(),
     new MiniCssExtractPlugin(),
     new FaviconsWebpackPlugin({
       logo: "assets/logo.svg",
@@ -36,22 +41,6 @@ const config = {
         {
           from: "assets/robots.txt",
           to: "robots.txt",
-        },
-        {
-          from: "src/fonts/Lato-Regular.woff",
-          to: "fonts/",
-        },
-        {
-          from: "src/fonts/Lato-Regular.woff2",
-          to: "fonts/",
-        },
-        {
-          from: "src/fonts/Lato-Italic.woff",
-          to: "fonts/",
-        },
-        {
-          from: "src/fonts/Lato-Italic.woff2",
-          to: "fonts/",
         },
       ],
     }),
@@ -82,11 +71,6 @@ const config = {
   },
 };
 
-module.exports = () => {
-  if (isProduction) {
-    config.mode = "production";
-  } else {
-    config.mode = "development";
-  }
+export default () => {
   return config;
 };

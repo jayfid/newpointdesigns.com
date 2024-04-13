@@ -1,4 +1,3 @@
 import "./main.scss";
-import foobar from "./main";
-
-foobar();
+import foobar from "./main.js";
+window.addEventListener("load", foobar);
