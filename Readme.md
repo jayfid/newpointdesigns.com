@@ -1,1 +1,1 @@
-http://www.newpointdesigns.com
+https://www.newpointdesigns.com
