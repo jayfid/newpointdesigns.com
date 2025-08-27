@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rm -rf node_modules dist .sass-cache",
     "pretty": "npx prettier --write .",
-    "lint": "npx stylelint '**/*.scss' && npx eslint src",
+    "lint": "npx stylelint '**/*.{css,scss}' && npx eslint src",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",

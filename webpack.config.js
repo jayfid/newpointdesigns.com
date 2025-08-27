@@ -52,7 +52,11 @@ const config = {
         loader: "babel-loader",
       },
       {
-        test: /\.(sc|c)ss$/i,
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.scss$/i,
         use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
