@@ -1,0 +1,212 @@
+/* Inline normalize (was src/_normalize.scss) */
+html {
+  font-family: sans-serif; /* 1 */ /* 2 */
+  text-size-adjust: 100%; /* 2 */
+}
+
+body { margin: 0; }
+
+main { display: block; }
+
+a {
+  background-color: transparent; /* 1 */
+  text-decoration-skip: objects; /* 2 */
+}
+
+h1 { font-size: 2em; margin: 0.67em 0; }
+
+img { border-style: none; }
+
+svg:not(:root) { overflow: hidden; }
+
+/* Design tokens in CSS custom properties */
+:root {
+  --background-color: #faba1f;
+  --banner-color: #0e7688;
+  --card-color: #02141e;
+  --banner-text-color: #ced1d4;
+  --card-text-color: #000000;
+  --cutout-color: #872e00;
+  --logo-accent-color: #e86476;
+
+  --base-font-size: 18px;
+  --font: "Lato", sans-serif;
+
+  --card-font-size: 0.875em;
+  --logo-font-size: 1.6875em;
+  --banner-font-size: 0.8125em;
+  --msg-line-height: 1.8em;
+
+  --card-width: 20.875em;
+  --card-height: 11.25em;
+
+  --logo-width: 0.9em;
+  --logo-height: 2.125em;
+  --logo-margin-right: 0.5em;
+
+  --banner-vertical-padding: 0.25em;
+  --msg-vertical-padding: 1.5625em;
+  --msg-horizontal-padding: 2.25em;
+
+  --card-rotation: 180deg;
+  --card-transition: 0.5s;
+}
+
+@keyframes tacotiem {
+  from { background-position: 0 0; }
+  to { background-position: 0 500%; }
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--font);
+  color: #000;
+  font-size: var(--base-font-size);
+
+  & * {
+    -webkit-touch-callout: none;
+    user-select: none;
+    font-family: inherit;
+    line-height: 100%;
+  }
+}
+
+.flopped .back,
+.flipped .front,
+.flopped .back *,
+.flipped .front * {
+  display: none;
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  background-position: 0 0;
+}
+
+.taco .frame {
+  background-image: url("images/taco.png");
+  background-position: 0 5000%;
+  background-repeat: repeat;
+  transition: background-position 10s linear;
+}
+
+.flip {
+  display: flex;
+  perspective: 800; /* consider 800px */
+  box-shadow: 0 0 5px #222;
+}
+
+.shadow { background-color: var(--cutout-color); }
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  flex: none;
+  transform-style: preserve-3d;
+  transition: transform var(--card-transition);
+  cursor: pointer;
+
+  &.flipped { transform: rotateX(var(--card-rotation)); }
+  &.flicked { transform: rotateX(calc(var(--card-rotation) / 3)); }
+
+  & .face {
+    position: absolute;
+    backface-visibility: hidden;
+    z-index: 2;
+    background-color: var(--card-color);
+    height: var(--card-height);
+    width: var(--card-width);
+    display: flex;
+
+    &.front {
+      cursor: pointer;
+      position: absolute;
+      z-index: 1;
+    }
+
+    &.back { transform: rotateX(var(--card-rotation)); }
+  }
+}
+
+.center-flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.branding {
+  margin-top: 0.5em;
+  text-align: center;
+  max-width: 65%;
+}
+
+.main-logo {
+  height: 100%;
+  width: 100%;
+  background-size: fit; /* consider 'contain' or 'cover' */
+}
+
+.msg { width: 100%; }
+
+p { margin-top: 0; margin-bottom: 10px; }
+
+a {
+  color: var(--logo-accent-color);
+  &:hover { color: color-mix(in srgb, var(--logo-accent-color), black 30%); }
+}
+
+.card-text {
+  text-align: center;
+  padding: var(--msg-vertical-padding) var(--msg-horizontal-padding);
+  font-weight: 400;
+  font-size: var(--card-font-size);
+  line-height: var(--msg-line-height);
+  margin: 3rem 0 0;
+  color: var(--card-text-color);
+}
+
+.name {
+  margin-bottom: 5px;
+  color: var(--banner-text-color);
+  font-size: 1.6rem;
+}
+
+.location {
+  color: var(--banner-text-color);
+  font-size: 1rem;
+}
+
+.links { margin-top: 1.7rem; }
+
+.spacer { color: var(--banner-color); padding: 0 0.5rem; }
+
+.banner {
+  background-color: var(--banner-color);
+  color: var(--banner-text-color);
+  padding: 0;
+  position: absolute;
+  width: auto;
+  top: 15px;
+  left: 0;
+}
+
+.banner-text {
+  font-size: var(--banner-font-size);
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+  padding: 0.4rem 1rem;
+}
+
+/* Note: CSS custom properties cannot be used in media queries.
+   24.075em = 20.875em + 3.2em (from original Sass) */
+@media screen and (max-width: 24.075em) {
+  .flip { transform: rotate(90deg); }
+}
+
