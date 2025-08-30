@@ -1,63 +1,63 @@
-/* Inline normalize (was src/_normalize.scss) */
 html {
-  font-family: sans-serif; /* 1 */ /* 2 */
-  text-size-adjust: 100%; /* 2 */
+  font-family: sans-serif;
+  text-size-adjust: 100%;
 }
 
-body { margin: 0; }
-
-main { display: block; }
-
-a {
-  background-color: transparent; /* 1 */
-  text-decoration-skip: objects; /* 2 */
+main {
+  display: block;
 }
 
-h1 { font-size: 2em; margin: 0.67em 0; }
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
 
-img { border-style: none; }
+img {
+  border-style: none;
+}
 
-svg:not(:root) { overflow: hidden; }
+svg:not(:root) {
+  overflow: hidden;
+}
 
-/* Design tokens in CSS custom properties */
 :root {
   --background-color: #faba1f;
   --banner-color: #0e7688;
   --card-color: #02141e;
   --banner-text-color: #ced1d4;
-  --card-text-color: #000000;
+  --card-text-color: #000;
   --cutout-color: #872e00;
   --logo-accent-color: #e86476;
-
   --base-font-size: 18px;
   --font: "Lato", sans-serif;
-
   --card-font-size: 0.875em;
   --logo-font-size: 1.6875em;
   --banner-font-size: 0.8125em;
   --msg-line-height: 1.8em;
-
   --card-width: 20.875em;
   --card-height: 11.25em;
-
   --logo-width: 0.9em;
   --logo-height: 2.125em;
   --logo-margin-right: 0.5em;
-
   --banner-vertical-padding: 0.25em;
   --msg-vertical-padding: 1.5625em;
   --msg-horizontal-padding: 2.25em;
-
   --card-rotation: 180deg;
   --card-transition: 0.5s;
 }
 
 @keyframes tacotiem {
-  from { background-position: 0 0; }
-  to { background-position: 0 500%; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 500%;
+  }
 }
 
 body {
+  margin: 0;
   background-color: var(--background-color);
   font-family: var(--font);
   color: #000;
@@ -97,11 +97,13 @@ body {
 
 .flip {
   display: flex;
-  perspective: 800; /* consider 800px */
+  perspective: 800px;
   box-shadow: 0 0 5px #222;
 }
 
-.shadow { background-color: var(--cutout-color); }
+.shadow {
+  background-color: var(--cutout-color);
+}
 
 .card {
   width: var(--card-width);
@@ -111,8 +113,13 @@ body {
   transition: transform var(--card-transition);
   cursor: pointer;
 
-  &.flipped { transform: rotateX(var(--card-rotation)); }
-  &.flicked { transform: rotateX(calc(var(--card-rotation) / 3)); }
+  &.flipped {
+    transform: rotateX(var(--card-rotation));
+  }
+
+  &.flicked {
+    transform: rotateX(calc(var(--card-rotation) / 3));
+  }
 
   & .face {
     position: absolute;
@@ -129,7 +136,9 @@ body {
       z-index: 1;
     }
 
-    &.back { transform: rotateX(var(--card-rotation)); }
+    &.back {
+      transform: rotateX(var(--card-rotation));
+    }
   }
 }
 
@@ -148,16 +157,26 @@ body {
 .main-logo {
   height: 100%;
   width: 100%;
-  background-size: fit; /* consider 'contain' or 'cover' */
+  background-size: cover;
 }
 
-.msg { width: 100%; }
+.msg {
+  width: 100%;
+}
 
-p { margin-top: 0; margin-bottom: 10px; }
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
 
 a {
+  background-color: transparent;
   color: var(--logo-accent-color);
-  &:hover { color: color-mix(in srgb, var(--logo-accent-color), black 30%); }
+  text-decoration-skip: objects;
+
+  &:hover {
+    color: color-mix(in srgb, var(--logo-accent-color), black 30%);
+  }
 }
 
 .card-text {
@@ -181,9 +200,14 @@ a {
   font-size: 1rem;
 }
 
-.links { margin-top: 1.7rem; }
+.links {
+  margin-top: 1.7rem;
+}
 
-.spacer { color: var(--banner-color); padding: 0 0.5rem; }
+.spacer {
+  color: var(--banner-color);
+  padding: 0 0.5rem;
+}
 
 .banner {
   background-color: var(--banner-color);
@@ -204,9 +228,8 @@ a {
   padding: 0.4rem 1rem;
 }
 
-/* Note: CSS custom properties cannot be used in media queries.
-   24.075em = 20.875em + 3.2em (from original Sass) */
-@media screen and (max-width: 24.075em) {
-  .flip { transform: rotate(90deg); }
+@media screen and (width <= 24.075em) {
+  .flip {
+    transform: rotate(90deg);
+  }
 }
-

@@ -5,8 +5,6 @@ import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
 
 const __dirname = import.meta.dirname;
@@ -17,6 +15,7 @@ const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   devServer: {
     open: true,
@@ -24,7 +23,6 @@ const config = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
@@ -35,14 +33,6 @@ const config = {
       outputPath: __dirname + "/dist/",
       prefix: "",
       mode: isProduction ? "webapp" : "light",
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: "assets/robots.txt",
-          to: "robots.txt",
-        },
-      ],
     }),
   ],
   module: {
@@ -56,20 +46,8 @@ const config = {
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.scss$/i,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
-      },
-      {
         test: /\.(svg|png|jpg|gif|ico|txt)$/i,
         type: "asset",
-      },
-      {
-        test: /images\/taco\.png$/i,
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf)$/i,
-        type: "asset/resource",
       },
     ],
   },
