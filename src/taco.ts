@@ -1,11 +1,13 @@
 const taco = () => {
   let keyIndex = 0;
   const phrase = ["t", "a", "c", "o"];
-  window.addEventListener("keyup", (e) => {
-    let tacoed = false;
+  let tacoed = false;
+
+  window.addEventListener("keyup", (e: KeyboardEvent) => {
     if (tacoed) {
       return;
     }
+
     const key = e.key;
     if (phrase[keyIndex] === key) {
       keyIndex++;
