@@ -1,14 +1,14 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
-import path from "path";
-import process from "process";
-import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "node:path";
+import process from "node:process";
 import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import webpack from "webpack";
 
 const __dirname = import.meta.dirname;
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 const config = {
   mode: isProduction ? "production" : "development",
@@ -30,7 +30,7 @@ const config = {
     new MiniCssExtractPlugin(),
     new FaviconsWebpackPlugin({
       logo: "assets/logo.svg",
-      outputPath: __dirname + "/dist/",
+      outputPath: `${__dirname}/dist/`,
       prefix: "",
       mode: isProduction ? "webapp" : "light",
     }),
@@ -43,7 +43,7 @@ const config = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(svg|png|jpg|gif|ico|txt)$/i,

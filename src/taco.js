@@ -6,7 +6,7 @@ const taco = () => {
     if (tacoed) {
       return;
     }
-    var key = e.key;
+    const key = e.key;
     if (phrase[keyIndex] === key) {
       keyIndex++;
       if (keyIndex === phrase.length) {

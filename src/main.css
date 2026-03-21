@@ -1,6 +1,5 @@
 html {
   font-family: sans-serif;
-  text-size-adjust: 100%;
 }
 
 main {
@@ -172,7 +171,6 @@ p {
 a {
   background-color: transparent;
   color: var(--logo-accent-color);
-  text-decoration-skip: objects;
 
   &:hover {
     color: color-mix(in srgb, var(--logo-accent-color), black 30%);
